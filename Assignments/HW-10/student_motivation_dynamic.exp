@@ -1,0 +1,248 @@
+// ~->[DNET-1]->~
+
+// File created by MoussaviM at UMaryland_Lab using Netica 6.09 on Apr 12, 2023 at 03:01:36 UTC.
+
+bnet student_motivation_dynamic {
+numdimensions = 1;
+AutoCompile = TRUE;
+autoupdate = TRUE;
+whenchanged = 1681268496;
+
+visual V2 {
+	defdispform = BELIEFBARS;
+	nodelabeling = TITLE;
+	NodeMaxNumEntries = 50;
+	nodefont = font {shape= "Arial"; size= 9;};
+	linkfont = font {shape= "Arial"; size= 9;};
+	ShowLinkStrengths = 1;
+	windowposn = (104, 104, 1138, 520);
+	resolution = 72;
+	drawingbounds = (1080, 720);
+	showpagebreaks = FALSE;
+	usegrid = TRUE;
+	gridspace = (6, 6);
+	NodeSet Node {BuiltIn = 1; Color = 0x00e1e1e1;};
+	NodeSet Nature {BuiltIn = 1; Color = 0x00f8eed2;};
+	NodeSet Deterministic {BuiltIn = 1; Color = 0x00d3caa6;};
+	NodeSet Finding {BuiltIn = 1; Color = 0x00c8c8c8;};
+	NodeSet Constant {BuiltIn = 1; Color = 0x00ffffff;};
+	NodeSet ConstantValue {BuiltIn = 1; Color = 0x00ffffb4;};
+	NodeSet Utility {BuiltIn = 1; Color = 0x00ffbdbd;};
+	NodeSet Decision {BuiltIn = 1; Color = 0x00dee8ff;};
+	NodeSet Documentation {BuiltIn = 1; Color = 0x00f0fafa;};
+	NodeSet Title {BuiltIn = 1; Color = 0x00ffffff;};
+	PrinterSetting A {
+		margins = (1270, 1270, 1270, 1270);
+		};
+	};
+
+node Motivation {
+	discrete = TRUE;
+	states = (Yes, No);
+	kind = NATURE;
+	chance = CHANCE;
+	parents = ();
+	probs = 
+		// Yes          No           
+		  (0.7,         0.3);
+	persist = (Infinity);
+	position = (0);
+	title = "Student Motivation";
+	whenchanged = 1681268351;
+	belief = (0.7, 0.3);
+	visual V2 {
+		center = (78, 30);
+		height = 1;
+		};
+	};
+
+node Motivation1 {
+	discrete = TRUE;
+	states = (Yes, No);
+	kind = NATURE;
+	chance = CHANCE;
+	parents = (Motivation);
+	probs = 
+		// Yes          No            // Motivation 
+		  (0.75,        0.25,         // Yes        
+		   0.3,         0.7);         // No         ;
+	delays = (
+		(1));
+	position = (0);
+	title = "Student Motivation";
+	whenchanged = 1681268428;
+	belief = (0.615, 0.385);
+	visual V2 {
+		center = (288, 30);
+		height = 4;
+		};
+	};
+
+node Motivation2 {
+	discrete = TRUE;
+	states = (Yes, No);
+	kind = NATURE;
+	chance = CHANCE;
+	parents = (Motivation1);
+	probs = 
+		// Yes          No            // Motivation1 
+		  (0.75,        0.25,         // Yes         
+		   0.3,         0.7);         // No          ;
+	delays = (
+		(1));
+	position = (0);
+	title = "Student Motivation";
+	whenchanged = 1681268438;
+	belief = (0.57675, 0.42325);
+	visual V2 {
+		center = (474, 30);
+		height = 2;
+		};
+	};
+
+node Homework {
+	discrete = TRUE;
+	states = (Yes, No);
+	kind = NATURE;
+	chance = CHANCE;
+	parents = (Motivation1);
+	probs = 
+		// Yes          No            // Motivation1 
+		  (0.9,         0.1,          // Yes         
+		   0.4,         0.6);         // No          ;
+	position = (0);
+	title = "Completed Homework";
+	whenchanged = 1681268361;
+	belief = (0.7075, 0.2925);
+	visual V2 {
+		center = (288, 126);
+		height = 5;
+		};
+	};
+
+node Participation {
+	discrete = TRUE;
+	states = (Yes, No);
+	kind = NATURE;
+	chance = CHANCE;
+	parents = (Motivation1);
+	probs = 
+		// Yes          No            // Motivation1 
+		  (0.8,         0.2,          // Yes         
+		   0.3,         0.7);         // No          ;
+	position = (0);
+	title = "Student Participation";
+	whenchanged = 1681268361;
+	belief = (0.6075, 0.3925);
+	visual V2 {
+		center = (288, 234);
+		height = 7;
+		};
+	};
+
+node Motivation3 {
+	discrete = TRUE;
+	states = (Yes, No);
+	kind = NATURE;
+	chance = CHANCE;
+	parents = (Motivation2);
+	probs = 
+		// Yes          No            // Motivation2 
+		  (0.75,        0.25,         // Yes         
+		   0.3,         0.7);         // No          ;
+	delays = (
+		(1));
+	position = (0);
+	title = "Student Motivation";
+	whenchanged = 1681268438;
+	belief = (0.5595375, 0.4404625);
+	visual V2 {
+		center = (678, 30);
+		height = 3;
+		};
+	};
+
+node Homework1 {
+	discrete = TRUE;
+	states = (Yes, No);
+	kind = NATURE;
+	chance = CHANCE;
+	parents = (Motivation2);
+	probs = 
+		// Yes          No            // Motivation2 
+		  (0.9,         0.1,          // Yes         
+		   0.4,         0.6);         // No          ;
+	position = (0);
+	title = "Completed Homework";
+	whenchanged = 1681268361;
+	belief = (0.688375, 0.311625);
+	visual V2 {
+		center = (480, 126);
+		height = 9;
+		};
+	};
+
+node Participation1 {
+	discrete = TRUE;
+	states = (Yes, No);
+	kind = NATURE;
+	chance = CHANCE;
+	parents = (Motivation2);
+	probs = 
+		// Yes          No            // Motivation2 
+		  (0.8,         0.2,          // Yes         
+		   0.3,         0.7);         // No          ;
+	position = (0);
+	title = "Student Participation";
+	whenchanged = 1681268361;
+	belief = (0.588375, 0.411625);
+	visual V2 {
+		center = (510, 234);
+		height = 8;
+		};
+	};
+
+node Homework2 {
+	discrete = TRUE;
+	states = (Yes, No);
+	kind = NATURE;
+	chance = CHANCE;
+	parents = (Motivation3);
+	probs = 
+		// Yes          No            // Motivation3 
+		  (0.9,         0.1,          // Yes         
+		   0.4,         0.6);         // No          ;
+	position = (0);
+	title = "Completed Homework";
+	whenchanged = 1681268361;
+	belief = (0.6797687, 0.3202312);
+	visual V2 {
+		center = (696, 126);
+		height = 6;
+		link 1 {
+			path = ((682, 57), (691, 100));
+			};
+		};
+	};
+
+node Participation2 {
+	discrete = TRUE;
+	states = (Yes, No);
+	kind = NATURE;
+	chance = CHANCE;
+	parents = (Motivation3);
+	probs = 
+		// Yes          No            // Motivation3 
+		  (0.8,         0.2,          // Yes         
+		   0.3,         0.7);         // No          ;
+	position = (0);
+	title = "Student Participation";
+	whenchanged = 1681268361;
+	belief = (0.5797687, 0.4202313);
+	visual V2 {
+		center = (708, 240);
+		height = 10;
+		};
+	};
+ElimOrder = (Motivation, Homework, Participation, Motivation1, Homework1, Participation1, Motivation2, Homework2, Motivation3, Participation2);
+};
